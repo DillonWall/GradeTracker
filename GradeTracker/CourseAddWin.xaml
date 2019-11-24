@@ -1,0 +1,49 @@
+﻿<Window x:Class="GradeTracker.CourseAddWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:GradeTracker.Properties"
+        xmlns:local="clr-namespace:GradeTracker"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" 
+        Title="{x:Static resx:Resources.str_AddCourseWinTitle}" Style="{DynamicResource CourseAddWindow}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition MaxHeight="250"/>
+        </Grid.RowDefinitions>
+
+        <TextBox  Name="crsAddTextBox" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{DynamicResource TextBoxAdd}">
+        </TextBox>
+
+        <Button Grid.Row="1" Grid.Column="0" Style="{DynamicResource MainButton}" Click="crsAddOKBtn"  >
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="#ff20a198" >
+                        <TextBlock Text="{x:Static resx:Resources.str_Okay}" Style="{DynamicResource ButtonTextBlock}">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button Grid.Row="1" Grid.Column="1"  Click="crsAddCancelBtn" Style="{DynamicResource MainButton}"  >
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="20" Background="#ff20a198" >
+                        <TextBlock Text="{x:Static resx:Resources.str_Cancel}" Style="{DynamicResource ButtonTextBlock}">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+
+        
+    </Grid>
+</Window>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="GradeTracker.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:GradeTracker.Properties"
+        xmlns:local="clr-namespace:GradeTracker"
+        mc:Ignorable="d"
+        Title="{x:Static resx:Resources.str_HelpWinTitle}" Height="450" Width="800" Background="#ff043643"
+        WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+        <Expander Grid.Row="0" Header="{x:Static resx:Resources.str_AddCourse_Header}" Style="{DynamicResource HelpWindowItems}">
+            <TextBlock Style="{DynamicResource HelpWindowText}" Text="{x:Static resx:Resources.str_AddCourse_TB}"/>
+        </Expander>
+        <Expander Grid.Row="1" Header="{x:Static resx:Resources.str_ViewDetails_Header}"  Style="{DynamicResource HelpWindowItems}">
+            <TextBlock Style="{DynamicResource HelpWindowText}" Text="{x:Static resx:Resources.str_ViewDetails_TB}"/>
+        </Expander>
+        <Expander Grid.Row="2" Header="{x:Static resx:Resources.str_AddCategory_Header}" Style="{DynamicResource HelpWindowItems}">
+            <TextBlock Style="{DynamicResource HelpWindowText}" Text="{x:Static resx:Resources.str_AddCategory_TB}"/>
+        </Expander>
+        <Expander Grid.Row="3" Header="{x:Static resx:Resources.str_AddAssignment_Header}" Style="{DynamicResource HelpWindowItems}">
+            <TextBlock Style="{DynamicResource HelpWindowText}" Text="{x:Static resx:Resources.str_AddAssignment_TB}"/>
+        </Expander>
+    </Grid>
+</Window>

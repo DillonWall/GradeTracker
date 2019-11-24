@@ -1,0 +1,40 @@
+﻿
+    <Window x:Class="GradeTracker.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:GradeTracker.Properties"
+        xmlns:local="clr-namespace:GradeTracker"
+        mc:Ignorable="d"
+        Title="About Gradetracker 2019" Style="{DynamicResource AboutWindow}"
+        WindowStartupLocation="CenterScreen" >
+        <Grid>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+           <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+            
+        
+            <TextBlock Grid.Row="0" Style="{DynamicResource WindowTitle}" Text="About Page"/>
+        <TextBlock Grid.Row="1" Style="{DynamicResource AboutGradeTrackText}" Text="Gradetracker 2019"/>
+        <TextBlock Grid.Row="2" Style="{DynamicResource AboutText}" Text="Levi Leuthold - LeutholdLevi@gmail.com"/>
+        <TextBlock Grid.Row="3" Style="{DynamicResource AboutText}" Text="Dillon Wall - DillonMWall@msn.com - sites.google.com/view/DillonWall"/>
+        <TextBlock Grid.Row="4" Style="{DynamicResource AboutText}" Text="Whitney Duarte - Whitney.Duarte1@gmail.com"/>
+        <Button Grid.Row="5" Grid.Column="1" Style="{DynamicResource SmallOkay}"  Click="OkayButton" >
+            <Button.Content>
+                <TextBlock Text="{x:Static resx:Resources.str_Okay}" Style="{DynamicResource SmallOkayText}">
+                </TextBlock>
+            </Button.Content>
+        </Button>
+
+    </Grid>
+    </Window>
+

@@ -1,0 +1,53 @@
+﻿<Window x:Class="GradeTracker.GradeOverviewWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:GradeTracker.Properties"
+        xmlns:local="clr-namespace:GradeTracker"
+        mc:Ignorable="d"
+        Height="825" Width="1200" MinHeight="800" MinWidth="1150" Title="{x:Static resx:Resources.str_GradeOverviewWinTitle}" WindowStartupLocation="CenterScreen" Style="{DynamicResource GradeOverviewWindow}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <Label Grid.Row="0" Grid.Column="0" Style="{DynamicResource GradeOverviewLabels}" Content="{x:Static resx:Resources.str_FinalCourseScore}"/>
+        <Label Grid.Row="0" Grid.Column="1" Name="FinalScoreLabel" Style="{DynamicResource GradeOverviewLabelScore}"/>
+        <Label Grid.Row="1" Grid.Column="0" Style="{DynamicResource GradeOverviewLabels}" Content="{x:Static resx:Resources.str_BreakdownCategory}"/>
+
+        <ListBox Grid.Row="1" Grid.Column="1" Name="GradeOverviewCategoryBreakdown"  Style="{DynamicResource GradeOverviewListBox}" Width="500">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{DynamicResource OverviewListBoxText}" Text="{Binding Path=Name}">
+                        </TextBlock>
+                        <Label Grid.Column="1"  Content="{Binding Path=_TotalCategoryScore}" Style="{DynamicResource OverviewListBoxLabel}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Click="CancelBtn_Click" Style="{DynamicResource MainButton}"  >
+            <Button.Template>
+                <ControlTemplate>
+                    <Border  CornerRadius="20" Background="#ff20a198">
+                        <TextBlock Text="{x:Static resx:Resources.str_Okay}" Style="{DynamicResource ButtonTextBlock}">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+    </Grid>
+</Window>

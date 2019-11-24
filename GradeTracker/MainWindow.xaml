@@ -1,0 +1,74 @@
+﻿<Window x:Class="GradeTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GradeTracker"
+        xmlns:resx="clr-namespace:GradeTracker.Properties"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen" 
+        Title="{x:Static resx:Resources.str_MainWinTitle}" Style="{DynamicResource MainWindows}" >
+
+    <DockPanel Style="{DynamicResource MainDockPanel}">
+
+        <StackPanel  Style="{DynamicResource MainDockPanel}">
+            <Menu Style="{DynamicResource Menu}" >
+                <MenuItem Header="_File" Style="{DynamicResource MenuItem}" >
+                    <MenuItem Header="About" Click="OpenAbout" Style="{DynamicResource MenuItem}" />
+                    <MenuItem Header="Exit" Click="ExitProgram" Style="{DynamicResource MenuItem}" />
+                </MenuItem>
+                <MenuItem Header="Help" Click="OpenHelp" Style="{DynamicResource MenuItem}">
+                </MenuItem>
+            </Menu>
+            <Label Style="{DynamicResource WindowTitle}" Content="{x:Static resx:Resources.str_CourseSelection}"/>
+        </StackPanel>
+
+        <DockPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="305*"/>
+                    <RowDefinition Height="74*"/>
+                    <RowDefinition Height="125"/>
+                </Grid.RowDefinitions>
+
+                <ListBox Style="{DynamicResource MainListBox}" Name="listOfCoursesBox" SelectionChanged="ListOfCoursesBox_OnSelectionChanged" Grid.RowSpan="2">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="40" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{DynamicResource ListBoxText}" Text="{Binding Path=Name}"/>
+                                <Label Grid.Column="1" Style="{DynamicResource ListBoxLabel}" Content="{Binding Path=TotalScorePercent}" />
+                                <Button Grid.Column="2" Click="DeleteCourse" Style="{DynamicResource MainTrash}" >
+                                    <Button.Content>
+                                        <Image Source="Pictures/DeleteIcon.png" Margin="3"/>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+
+                <Button Grid.Row="2" Grid.Column="0" Style="{DynamicResource MainButton}" Click="AddCourseBtn">
+                    <Button.Content>
+                        <TextBlock Text="{x:Static resx:Resources.str_Add}" Style="{DynamicResource ButtonTextBlock}"/>
+                    </Button.Content>
+                </Button>
+                <Button Name="NextBtn" IsEnabled="False" Grid.Row="2" Grid.Column="1" Style="{DynamicResource MainButton}"  Click="nextBtn" >
+                    <Button.Content>
+                        <TextBlock Text="{x:Static resx:Resources.str_Next}" Style="{DynamicResource ButtonTextBlock}"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </DockPanel>
+    </DockPanel>
+</Window>

@@ -1,0 +1,201 @@
+﻿<Window x:Class="GradeTracker.CourseDetailsWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:GradeTracker.Properties"
+        xmlns:local="clr-namespace:GradeTracker"
+        mc:Ignorable="d"
+        Title="{x:Static resx:Resources.str_CourseDetailsWinTitle}" Height="825" Width="1200" MinHeight="800" MinWidth="1100" Background="#ff043643"
+        WindowStartupLocation="CenterScreen" >
+    <Window.Resources>
+        <SolidColorBrush x:Key="UnselectedBrush" Color="#ff20a198"/>
+        <SolidColorBrush x:Key="SolidBorderBrush" Color="Black" />
+        <SolidColorBrush x:Key="SelectedBrush" Color="#ff20a198" />
+        <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE" />
+        <SolidColorBrush x:Key="DisabledBorderBrush" Color="#AAA" />
+        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border 
+                                Name="Border"
+                                Margin="0,0,-4,0" 
+                                Background="{StaticResource UnselectedBrush}"
+                                BorderBrush="{StaticResource  SolidBorderBrush}" 
+                                BorderThickness="1,1,1,1" 
+                                CornerRadius="2,12,0,0" >
+                                <ContentPresenter x:Name="ContentSite"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    ContentSource="Header"
+                                    Margin="12,2,12,2"
+                                    RecognizesAccessKey="True"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Panel.ZIndex" Value="100" />
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource SelectedBrush}" />
+                                <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <Menu Style="{DynamicResource Menu}" >
+                <MenuItem Header="_File" Style="{DynamicResource MenuItem}" >
+                    <MenuItem Header="About" Click="OpenAbout" Style="{DynamicResource MenuItem}" />
+                    <MenuItem Header="Exit" Click="ExitProgram" Style="{DynamicResource MenuItem}" />
+                </MenuItem>
+                <MenuItem Header="Help" Click="OpenHelp"  Style="{DynamicResource MenuItem}">
+                </MenuItem>
+            </Menu>
+            <Grid Height="73" Margin="5">
+                <Button FontSize="40" Width="120" Style="{StaticResource DeepBlueStyle}" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#ff1c89d5" Foreground="White" HorizontalAlignment="Right" Click="OpenGradeOverviewClick">
+                    <Button.Content>
+                        <Image Source="Pictures/OverviewIcon.png" Margin="3"/>
+                    </Button.Content>
+                </Button>
+
+                <Button Style="{StaticResource DeepBlueStyle}" FontSize="40" Width="120"  Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#ff1c89d5" Foreground="White" HorizontalAlignment="Left" Click="HomeClick">
+                    <Button.Content>
+                        <Image Source="Pictures/HomeIcon.png" Margin="3"/>
+                    </Button.Content>
+                </Button>
+
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#ffffffff" FontSize="40" Content="{x:Static resx:Resources.str_CourseDetails}"/>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TabControl Margin="0,0,0,-10" Name="CourseDetailsTabControl" SelectionChanged="CourseDetailsTabControl_OnSelectionChanged" Background="#ff043643" Width="880" HorizontalAlignment="Center" BorderBrush="#ff043643">
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="#ff20a198" Width="150">
+                                <Label HorizontalAlignment="Left" Background="#ff20a198" FontSize="18" Content="{Binding Path=Name}" Foreground="White" Margin="0,0,0,0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl>
+
+                <!--<Button HorizontalAlignment="Right" Margin="0" MaxHeight="30" PreviewMouseLeftButtonDown="OpenCategoryAdd_Click">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border CornerRadius="10" Background="#ff20a198" >
+                                <Image Source="Pictures/AddIcon.png" Width="20" Margin="20,5,20,5"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>-->
+                <Button Background="#ff20a198" Style="{StaticResource CategoryButtonStyle}" BorderBrush="Transparent" Margin="5" Width="30" Click="OpenCategoryAdd_Click">
+                    <Button.Content>
+                        <Image Source="Pictures/AddIcon.png" Margin="4"/>
+                    </Button.Content>
+                </Button>
+                <Button Name="CategoryEditBtn" IsEnabled="False" Background="#ff20a198" Style="{StaticResource CategoryButtonStyle}" BorderBrush="Transparent" Margin="5" Width="30" Click="OpenCategoryEdit_Click">
+                    <Button.Content>
+                        <Image Source="Pictures/EditIcon.png" Margin="4"/>
+                    </Button.Content>
+                </Button>
+                <Button Name="CategoryDeleteBtn" IsEnabled="False" Background="#ff20a198" Style="{StaticResource CategoryButtonStyle}" BorderBrush="Transparent" Margin="5" Width="30" Click="DeleteCategory_Click">
+                    <Button.Content>
+                        <Image Source="Pictures/DeleteIcon.png" Margin="4"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+
+            <ListBox Style="{DynamicResource MainListBox}" Name="CourseDetailsAssignmentsListBox" SelectionChanged="ListBoxItem_OnSelected" Height="400" Width="1000">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="120" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center" FontSize="44" Foreground="White" Text="{Binding Path=Name}">
+                            </TextBlock>
+                            <Label Margin="-50,0,0,0" Grid.Column="1" FontSize="44" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" Content="{Binding Path=TotalPercent}" ContentStringFormat="{}{0}%"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="AddBtn" IsEnabled="False" Margin="5" Grid.Column="0" Style="{StaticResource TurquoiseStyle}" FontSize="12" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#ff20a198" Foreground="White" Click="AddAssignmentClick" >
+                    <Button.Content>
+                        <TextBlock Text="{x:Static resx:Resources.str_Add}" Foreground="White" 
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,0,10"
+                                   Height="40"
+                                   FontSize="35">
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+
+                <Button Name="EditBtn" IsEnabled="False" Margin="5" Grid.Column="1" Style="{StaticResource TurquoiseStyle}" FontSize="10" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#ff20a198" Foreground="White" Click="OpenAssignmentEdit_Click" >
+                    <Button.Content>
+                        <TextBlock Text="{x:Static resx:Resources.str_Edit}" Foreground="White" 
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,0,10"
+                                   Height="40"
+                                   FontSize="35">
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Foreground="White" FontSize="24">
+                    <TextBlock TextDecorations="Underline" Text="{x:Static resx:Resources.str_Score}"/>
+                </Label>
+                <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Foreground="White" FontSize="24">
+                    <TextBlock TextDecorations="Underline" Text="{x:Static resx:Resources.str_MaxScore}"/>
+                </Label>
+                <Label Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Foreground="White" FontSize="24">
+                    <TextBlock TextDecorations="Underline" Text="{x:Static resx:Resources.str_Category}"/>
+                </Label>
+                <Label Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" Foreground="White" FontSize="24">
+                    <TextBlock TextDecorations="Underline" Text="{x:Static resx:Resources.str_TotalPercent}"/>
+                </Label>
+                <Label Name="Score_Lbl" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Content="" Foreground="White" FontSize="24"/>
+                <Label Name="MaxScore_Lbl" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Content="" Foreground="White" FontSize="24"/>
+                <Label Name ="Category_Lb1" Grid.Column="2" Grid.Row="1"  HorizontalContentAlignment="Center" Content="" Foreground="White" FontSize="24" />
+                <Label Name="Percent_Lbl" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" Content="" Foreground="White" FontSize="24"/>
+            </Grid>
+        </StackPanel>
+    </DockPanel>
+</Window>

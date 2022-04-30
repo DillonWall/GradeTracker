@@ -1,37 +1,32 @@
-# GamesDatabaseForms
+# GradeTracker
 
 ## Overview
-This program is a game registration system, allowing users to host and sign up for game tournaments.
+This program is a grade tracking system that allows students to track their own grades with weighted assignment categories.
 
-It was created in about 1 week in my database class at OIT, so the UI and features are not completely finished. 
+The aim of this application is to help students take calculating their current and projected grades into their own hands, 
+eliminating the problem of waiting for teachers that don't update their online grading system.
+
+Created in a group collaboration between Levi Leuthold, Dillon Wall, and Whitney Duarte in 2019.
 
 ## Details
-### Technology
+![image](https://user-images.githubusercontent.com/49173127/166112327-a5fd61bb-c39c-458a-9d25-16ca4ef8777c.png)
 
-The program is completely in C# using WinForms and has an SQL database backend which supports user logins as well as information about games and their scheduling.
-
-### Usage
-
-Users can create an account which is linked to their information such as Name, Display Name, Email, Phone Number, etc.
-
-After creating an account, users can create/host game events by specifying a time, place, pricing, and any other necessary information.
-
-Once an event is created, any user may find the event and sign up for it.
 
 ## Installation
 Open and run with Visual Studio 2022 (or your IDE of choice)
 
-IMPORTANT: The application will not be able to run correctly because it is missing the App.config file for the project. 
-This is for privacy reasons since it contains the connection string I used to connect to our school's database, 
-so the backend of this project is unfortunatly unavailable to the public.
-
 ## Status
-This project is functionally finished, but some UI and features are incomplete.
+This project is mostly finished, but some features aren’t working properly due to the time/scope of the project. 
+
+The following is a list that illustrates the missing features and how they should work:
+* Course “0%” should display the overall percent grade of the course. 
+* The trashcan icon only deletes the selected the course in the listbox not the course it’s next to.
+* The add or edit assignment should have a dynamic drop-down box to change category.
+
 
 ## Screenshots
-![image](https://user-images.githubusercontent.com/49173127/166089169-c4b7aebb-6194-4c1b-978f-bf19ad100b37.png)
+![image](https://user-images.githubusercontent.com/49173127/166112345-9ce465e2-b023-486d-bc00-50947132e030.png)
 
-![image](https://user-images.githubusercontent.com/49173127/166089172-e2435e86-5cf4-470c-81c8-241d2beb7fb3.png)
+![image](https://user-images.githubusercontent.com/49173127/166112338-24465bec-0f4d-4167-9b17-fd969c1c2c39.png)
 
-![image](https://user-images.githubusercontent.com/49173127/166089175-b3772ec5-b92d-4922-9bf0-13eda0e7908c.png)
-
+![image](https://user-images.githubusercontent.com/49173127/166112346-a5baac79-7b18-4cd3-a48a-4040b940fa4a.png)
